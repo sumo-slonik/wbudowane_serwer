@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @Entity
-public class Employ {
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
