@@ -25,13 +25,6 @@ public class InputDataController {
     private final EmployeeService employeeService;
     private final InputDataService inputDataService;
 
-    /*
-    {
-        "name": "Marcin",
-        "surname": "Warchoł",
-        "cardId": "0xc74e6b"
-    }
-    */
     @PostMapping("employee/save")
     public ResponseEntity<Employee> addEmploy(@RequestBody Employee toSave){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/employee/save").toUriString());
@@ -46,6 +39,13 @@ public class InputDataController {
         DataFromScanner result = inputDataService.addDataFromScanner(toSave);
         return ResponseEntity.created(uri).body(result);
     }
+
+    @GetMapping("employee")
+    @CrossOrigin(origins = "http://localhost:3000/")
+    public ResponseEntity<List<Employee>> getAll(){
+        return ResponseEntity.ok().body(employeeService.getAllEmployees());
+    }
+
     @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping("employee/currentLocation")
     public ResponseEntity<List<CurrentLocation>> getCurrentLocations() {
